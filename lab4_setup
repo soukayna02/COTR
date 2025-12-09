@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Remove Conda env
+conda deactivate
+
+# Add deadsnake PPA containing old and new Python versions
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update && sudo apt upgrade 
+
+# Install python 3.8
+sudo apt install python3.8 python3.8-venv 
+
+# Create lab4 virtual environment
+python3.8 -m venv lab4-venv
+
+# Activate lab4 virtual environment
+. lab4-venv/bin/activate
+
+# Update pip
+python -m pip install -U pip 
+
+# Install python packages dependencies
+[ ${reqfile} ] && python -m pip install -r ${reqfile}
+
+
